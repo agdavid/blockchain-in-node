@@ -1,5 +1,19 @@
 const SHA256 = require("crypto-js/sha256");
 
+
+
+let chain = [generateGenesisBlock()];
+const newBlockData = {
+    sender: "ks829fh28192j28d9dk9",
+    receiver: "ads8d91w29jsm2822910",
+    amount: 0.0023,
+    currency: "BTC"
+}
+const newChain = addBlock(chain, newBlockData);
+console.log(newChain);
+
+
+
 function calculateHash({ previousHash, timestamp, data, nonce = 1 }) {
     return SHA256(previousHash + timestamp + JSON.stringify(data) + nonce).toString();
 }
@@ -15,8 +29,6 @@ function generateGenesisBlock() {
         hash: calculateHash(block)
     };
 }
-
-console.log(generateGenesisBlock());
 
 function checkDifficulty(difficulty, hash) {
     return hash.substr(0, difficulty) === "0".repeat(difficulty)
@@ -62,6 +74,13 @@ function mineBlock(difficulty, block) {
     }
     // run recursively until we get correct hash for block
     return trampoline(mine(nextNonce(block)));
+}
+
+function addBlock(chain, data) {
+    const { hash: previousHash } = chain[chain.length - 1];
+    const block = { timestamp: + new Date(), data, previousHash, nonce: 0 }
+    const newBlock = mineBlock(4, block);
+    return chain.concat(newBlock);
 }
 
 // validate the chain
