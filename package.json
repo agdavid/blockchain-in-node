@@ -1,0 +1,24 @@
+{
+  "name": "blockchain-in-node",
+  "version": "1.0.0",
+  "description": "https://www.jsmonday.dev/articles/34/writing-a-blockchain-in-node-js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/agdavid/blockchain-in-node.git"
+  },
+  "keywords": [
+    "blockchain",
+    "node",
+    "crypto"
+  ],
+  "author": "agdavid",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/agdavid/blockchain-in-node/issues"
+  },
+  "homepage": "https://github.com/agdavid/blockchain-in-node#readme"
+}
